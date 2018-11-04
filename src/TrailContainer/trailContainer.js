@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AddTrail from '../AddTrail/addTrail';
 
-class MovieContainer extends Component {
+class TrailContainer extends Component {
     constructor(){
         super();
 
@@ -9,7 +9,8 @@ class MovieContainer extends Component {
             movies: []
         }
     }
-    addTrail = async (trail) => {
+    addTrail = async (trail, e) => {
+        e.preventDefault();
         console.log(trail);
     }
     render(){
@@ -21,4 +22,4 @@ class MovieContainer extends Component {
     }
 }
 
-export default MovieContainer;
+export default TrailContainer;
