@@ -8,6 +8,8 @@ const Trails = (props) => {
                 <h5>Location: {trail.location}</h5>
                 <h5>Description: {trail.description}</h5>
                 <h5>Rating: {trail.rating}</h5>
+                <button onClick={props.deleteTrail.bind(null, trail._id)}>Delete Trail</button>
+                <button>Edit Trail</button>
             </li>
         )
     })

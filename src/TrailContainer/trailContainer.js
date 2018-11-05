@@ -45,13 +45,23 @@ addTrail = async (trail, e) => {
         } catch(err){
             console.log(err)
         }
+}
+deleteTrail = async (id) => {
+    console.log(id, ' deleteTrail');
+    const deleteTrailResponse = await fetch('http://localhost:9000/api/v1/trails/' + id, {
+        method: 'DELETE'
+    });
+
+    const deleteTrailParsed = await deleteTrailResponse.json();
+    console.log(deleteTrailParsed, ' response from server')
+    
     }
     render(){
         console.log(this.state)
         return (
             <div>
                 <AddTrail addTrail={this.addTrail} />
-                <TrailList trails={this.state.trails}/>
+                <TrailList trails={this.state.trails} deleteTrail={this.deleteTrail}/>
             </div>
         )
     }

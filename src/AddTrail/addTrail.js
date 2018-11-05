@@ -22,15 +22,15 @@ class AddTrail extends Component {
                     <input type='text' name='name' value={this.state.name} onChange={this.updateTrail}/>  
                 </label>
                 <label>
-                    location:
+                    Location:
                     <input type='text' name='location' value={this.state.location} onChange={this.updateTrail}/>  
                 </label>
                 <label>
-                    description:
+                    Description:
                     <input type='text' name='description' value={this.state.description} onChange={this.updateTrail}/>  
                 </label>
                 <label>
-                    rating:
+                    Rating:
                     <input type='number' name='rating' value={this.state.rating} onChange={this.updateTrail}/>  
                 </label>
                 <button type='Submit'>Add Trail</button>
