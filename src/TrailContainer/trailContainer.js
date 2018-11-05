@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import AddTrail from '../AddTrail/addTrail';
 import TrailList from '../TrailList/trailList';
+import EditTrail from '../EditTrail/editTrail';
 
 class TrailContainer extends Component {
     constructor(){
         super();
 
         this.state = {
-            trails: []
+            trails: [],
+            trailToEdit: {
+                name: '',
+                location: '',
+                description: '',
+                rating: '',
+                _id: ''
+            },
+           
         }
     }
 getTrails = async () => {
@@ -56,16 +65,122 @@ deleteTrail = async (id) => {
     this.setState({trails: this.state.trails.filter((trail) => trail._id !== id)})
     console.log(deleteTrailParsed, ' response from server')
     
+}
+handleEditChange = (e) => {
+    this.setState({
+        trailToEdit: {
+            ...this.state.trailToEdit,
+            [e.currentTarget.name]: e.currentTarget.value
+        }
+    });
+
+}
+closeAndEdit = async (e) => {
+    e.preventDefault();
+    try {
+        const editResponse = await fetch('http://localhost:9000/api/v1/trails/' + this.state.trailToEdit._id, {
+            method: 'PUT',
+            body: JSON.stringify({
+                name: this.state.trailToEdit.name,
+                location: this.state.trailToEdit.location,
+                description: this.state.trailToEdit.description,
+                rating: this.state.trailToEdit.rating
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        const editResponseParsed = await editResponse.json();
+
+        const newTrailArrayWithEdit = this.state.trails.map((trail) => {
+
+            if(trail._id === editResponseParsed.data._id){
+                trail = editResponseParsed.data
+            }
+
+            return trail
+        });
+
+        this.setState({
+            trails: newTrailArrayWithEdit
+        });
+
+        console.log(editResponseParsed, ' parsed edit')
+
+    } catch(err){
+        console.log(err)
     }
-    render(){
-        console.log(this.state)
-        return (
-            <div>
-                <AddTrail addTrail={this.addTrail} />
-                <TrailList trails={this.state.trails} deleteTrail={this.deleteTrail}/>
-            </div>
+}
+openAndEdit = (trailFromTheList) => {
+    console.log(trailFromTheList, ' trail to edit');
+
+    this.setState({
+        trailToEdit: {
+            ...trailFromTheList
+        }
+    })
+}
+
+render(){
+    console.log(this.state)
+    return (
+        <div>
+            <AddTrail addTrail={this.addTrail}/>
+            <TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/>
+            <EditTrail trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
+        </div>
         )
     }
 }
 
 export default TrailContainer;
+
+//closeAndEdit = async (e) => {
+    //     e.preventDefault();
+    
+    //     try {
+    //         const editResponse = await fetch('http://localhost:9000/api/v1/trails/' + this.state.trailToEdit._id, {
+    //             method: 'PUT',
+    //             body: JSON.stringify({
+    //                 name: this.state.trailToEdit.name,
+    //                 location: this.state.trailToEdit.location,
+    //                 description: this.state.trailToEdit.description,
+    //                 rating: this.state.trailToEdit.rating
+    //             }),
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             }
+    //         });
+    //         const editResponseParsed = await editResponse.json();
+    
+    //         const newTrailArrayWithEdit = this.state.trails.map((trail) => {
+    
+    //             if(trail._id === editResponseParsed.data._id){
+    //                 trail = editResponseParsed.data
+    //             }
+    //             return trail
+    //         });
+    
+    //         this.setState({
+    //             showEditModal: false,
+    //             trails: newTrailArrayWithEdit
+    //         });
+    
+    //         console.log(editResponseParsed, 'parsed edit')
+    
+            
+    //     } catch(err){
+    //         console.log(err)
+    //     }
+    // }
+    // openAndEdit = (trailFromTheList) => {
+    //     console.log(trailFromTheList, ' trailToEdit ');
+    
+    //     this.setState({
+    //         showEditModal: true,
+    //         trailToEdit: {
+    //             ...trailFromTheList
+    //         }
+    //     })
+    // }
