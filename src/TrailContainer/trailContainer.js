@@ -126,6 +126,7 @@ render(){
     console.log(this.state)
     return (
         <div>
+            
             <AddTrail addTrail={this.addTrail}/>
             <TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/>
             <EditTrail trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
