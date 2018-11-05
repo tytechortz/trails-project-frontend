@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AddTrail from '../AddTrail/addTrail';
+import TrailList from '../TrailList/trailList';
 
 class TrailContainer extends Component {
     constructor(){
@@ -9,23 +10,36 @@ class TrailContainer extends Component {
             trails: []
         }
     }
-    addTrail = async (trail, e) => {
-        e.preventDefault();
-        console.log(trail);
+getTrails = async () => {
+    const trails = await fetch('http://localhost:9000/api/v1/trails');
+    const trailsParsedJSON = await trails.json();
+    return trailsParsedJSON
+}
+componentDidMount(){
+    this.getTrails().then((trails) => {
+        this.setState({trails: trails.data})
+    }).catch((err) => {
+        console.log(err);
+    })
+}
 
-        try {
-            const addedTrail = await fetch('http://localhost:9000/api/v1/trails', {
-                method: 'POST',
-                body: JSON.stringify(trail),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+addTrail = async (trail, e) => {
+    e.preventDefault();
+    console.log(trail);
 
-            const parsedResponse = await addedTrail.json();
-            console.log(parsedResponse, ' this is response')
+    try {
+        const addedTrail = await fetch('http://localhost:9000/api/v1/trails', {
+            method: 'POST',
+            body: JSON.stringify(trail),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
 
-            this.setState({trails: [...this.state.trails, parsedResponse.data]})
+        const parsedResponse = await addedTrail.json();
+        console.log(parsedResponse, ' this is response')
+
+        this.setState({trails: [...this.state.trails, parsedResponse.data]})
 
 
         } catch(err){
@@ -37,6 +51,7 @@ class TrailContainer extends Component {
         return (
             <div>
                 <AddTrail addTrail={this.addTrail} />
+                <TrailList trails={this.state.trails}/>
             </div>
         )
     }
