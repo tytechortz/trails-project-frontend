@@ -3,6 +3,8 @@ import AddTrail from '../AddTrail/addTrail';
 import TrailList from '../TrailList/trailList';
 import EditTrail from '../EditTrail/editTrail';
 import WeatherData from '../WeatherData/weatherData';
+import { Container, Row, Col } from 'reactstrap';
+
 
 
 const lat = '39';
