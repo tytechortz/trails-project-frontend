@@ -6,7 +6,7 @@ class TrailContainer extends Component {
         super();
 
         this.state = {
-            movies: []
+            trails: []
         }
     }
     addTrail = async (trail, e) => {
