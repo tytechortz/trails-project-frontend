@@ -53,6 +53,7 @@ deleteTrail = async (id) => {
     });
 
     const deleteTrailParsed = await deleteTrailResponse.json();
+    this.setState({trails: this.state.trails.filter((trail) => trail._id !== id)})
     console.log(deleteTrailParsed, ' response from server')
     
     }
