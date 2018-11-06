@@ -4,8 +4,7 @@ import TrailContainer from './TrailContainer/trailContainer';
 import NavBarContainer from './NavBarContainer/Navbar'
 import LogIn from './LogInContainer/LogIn'
 import { Route, Switch } from 'react-router-dom';
-import AddTrail from './AddTrail/addTrail';
-import EditTrail from './EditTrail/editTrail';
+
 
 const My404 = () => {
   return (
@@ -19,16 +18,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <NavBarContainer />
-      <main>
-      <Switch>
-        <Route exact path="/login" component={ LogIn } />
-        <Route exact path="/" component={ TrailContainer } />
-        <Route exact path="/addTrail" component={ AddTrail } />
-        <Route exact path="/editTrail" component={ EditTrail } />
-        <Route component={My404} />
-      </Switch>
-        </main>
+        <NavBarContainer />
+          <main>
+            <Switch>
+              <Route exact path="/login" component={LogIn} />
+              <Route exact path="/" component={TrailContainer} />
+              <Route component={My404} />
+            </Switch>
+          </main>
       </div>
     );
   }
