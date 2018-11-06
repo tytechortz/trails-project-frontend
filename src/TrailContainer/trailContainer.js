@@ -5,6 +5,7 @@ import EditTrail from '../EditTrail/editTrail';
 import WeatherData from '../WeatherData/weatherData';
 import { Container, Row, Col } from 'reactstrap';
 import { Route, Switch } from 'react-router-dom';
+import Map from '../Map/map';
 
 const My404 = () => {
     return (
@@ -165,6 +166,7 @@ render(){
     console.log(this.state)
     return (   
         <Container>
+
             <main>
                 <Switch>
                     <Route exact path="/addTrail" component={ AddTrail }/>
@@ -173,7 +175,7 @@ render(){
                 </Switch>
             </main>
                 <Row>
-                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/>INSERT MAP HERE</Col>
+                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/><Map/></Col>
                     <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
                 </Row>
         </Container>
