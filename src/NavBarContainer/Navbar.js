@@ -1,4 +1,9 @@
 import React from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Route, Switch } from 'react-router-dom';
+import AddTrail from "../AddTrail/addTrail"
+import EditTrail from '../EditTrail/editTrail';
+import TrailContainer from '../TrailContainer/trailContainer';
 import {
   Collapse,
   Navbar,
@@ -11,6 +16,8 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
+import LogIn from '../LogInContainer/LogIn';
+
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -34,26 +41,22 @@ export default class Example extends React.Component {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/">Home</NavLink>
+              <NavItem componentClass={TrailContainer}>
+                <NavLink href="/" to="/">Home</NavLink>
               </NavItem>
-              <NavItem>
-                <NavLink href="/">LogIn</NavLink>
+              <NavItem componentClass={LogIn}>
+                <NavLink href="/login" to="/login">LogIn</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem>
-                    Option 1
+                  <DropdownItem componentClass={AddTrail}>
+                  <NavLink href="/addTrail" to="/addTrail">Add a Trail</NavLink>
                   </DropdownItem>
                   <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
+                  <NavLink href="/editTrail" to="/editTrail">Edit a Trail</NavLink>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

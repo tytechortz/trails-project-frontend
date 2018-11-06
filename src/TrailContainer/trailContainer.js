@@ -4,6 +4,9 @@ import TrailList from '../TrailList/trailList';
 import EditTrail from '../EditTrail/editTrail';
 import WeatherData from '../WeatherData/weatherData';
 import { Container, Row, Col } from 'reactstrap';
+import { Route, Switch } from 'react-router-dom';
+
+
 
 
 
@@ -153,17 +156,17 @@ getWeather = async () => {
 
 render(){
     console.log(this.state)
-    return (
-            
-        <div>
-            <WeatherData weather={this.state.weather}/>
-            <AddTrail addTrail={this.addTrail}/>
-            <TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/>
-            <EditTrail trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
-        </div>
+    return (   
+        <Container>
+            <Row>
+                <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/>INSERT MAP HERE</Col>
+                <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
+            </Row>
+        </Container>
         )
     }
 }
+{/* <EditTrail trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/> */}
 
 
 
