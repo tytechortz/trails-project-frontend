@@ -7,8 +7,6 @@ import { Container, Row, Col } from 'reactstrap';
 
 const weatherData = (props) => {
     console.log(props)
-    
-
     return (
         <div>
             <h3>Current Weather</h3>

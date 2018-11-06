@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+
 
 class LogIn extends Component{
     constructor(){
@@ -11,9 +13,11 @@ class LogIn extends Component{
     }
     checkForm() {
         return this.state.username.length > 0 && this.state.password.length > 0;
+        
     }
 
     handleChange = (e) => {
+        console.log(e.target.value)
         this.setState({
           [e.target.id]: e.target.value
         });
@@ -28,11 +32,11 @@ class LogIn extends Component{
                 <form onSubmit={this.handleSubmit}>
                     <label>
                         Name:<input type="text" value={this.state.value} onChange={this.handleChange} />
-                    </label>
+                    </label><br/>
                     <label>
                         Password:<input type="text" value={this.state.value} onChange={this.handleChange} />
                     </label>
-                    <button type="submit" disabled={!this.checkForm()} value="Submit">Login</button>
+                    <button type="submit"  value="Submit">Login</button>
                 </form>
             </div>
         )
