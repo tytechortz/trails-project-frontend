@@ -5,6 +5,7 @@ import EditTrail from '../EditTrail/editTrail';
 import WeatherData from '../WeatherData/weatherData';
 import { Container, Row, Col } from 'reactstrap';
 import { Route, Switch } from 'react-router-dom';
+import Map from '../Map/map';
 
 
 
@@ -159,7 +160,7 @@ render(){
     return (   
         <Container>
             <Row>
-                <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/>INSERT MAP HERE</Col>
+                <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/><Map/></Col>
                 <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
             </Row>
         </Container>
