@@ -50,22 +50,12 @@ componentDidMount(){
         console.log(err);
     })
     this.getWeather().then((data) => {
-<<<<<<< HEAD
       console.log(data, 'this is data');
       this.setState({weather: data});
   
     }).catch((err) => {
       console.log(err);
     });
-=======
-        console.log(data, 'this is data');
-        this.setState({weather: data});
-    
-      }).catch((err) => {
-        console.log(err);
-      });
-    
->>>>>>> dbb619ba0e58b63a1f4bd64719f2d04d16ce9c46
 }
 
 addTrail = async (trail, e) => {
@@ -171,24 +161,10 @@ getWeather = async () => {
   }
   
 
-<<<<<<< HEAD
-=======
-  componentDidMount(){
-    this.getWeather().then((data) => {
-      console.log(data, 'this is data');
-      this.setState({weather: data});
-  
-    }).catch((err) => {
-      console.log(err);
-    });
-  }
-  
->>>>>>> dbb619ba0e58b63a1f4bd64719f2d04d16ce9c46
 render(){
     console.log(this.state)
     return (   
         <Container>
-<<<<<<< HEAD
             
             <Switch>
                 <Route exact path="/trail/addTrail" render={()=>{
@@ -202,18 +178,6 @@ render(){
             
                 <Row>
                     <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
-=======
-
-            <main>
-                <Switch>
-                    <Route exact path="/addTrail" component={ AddTrail }/>
-                    <Route exact path="/editTrail" component={ EditTrail }/>
-                    <Route component={My404} />
-                </Switch>
-            </main>
-                <Row>
-                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/><Map/></Col>
->>>>>>> dbb619ba0e58b63a1f4bd64719f2d04d16ce9c46
                     <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
                 </Row>
         </Container>

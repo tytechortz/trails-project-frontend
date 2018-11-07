@@ -8,8 +8,7 @@ class AddTrail extends Component {
 
         this.state = {
             name: '',
-            locationLat: '',
-            locationLon: '',
+            location: '',
             description: '',
             rating: ''
         }
@@ -26,12 +25,8 @@ class AddTrail extends Component {
                     <input type='text' name='name' value={this.state.name} onChange={this.updateTrail}/>  
                 </label>
                 <label>
-                    Location Latitude:
-                    <input type='text' name='locationLat' value={this.state.locationLat} onChange={this.updateTrail}/>  
-                </label>
-                <label>
-                    Location Longitude:
-                    <input type='text' name='locationLon' value={this.state.locationLon} onChange={this.updateTrail}/>  
+                    Location:
+                    <input type='text' name='location' value={this.state.location} onChange={this.updateTrail}/>  
                 </label>
                 <label>
                     Description:
