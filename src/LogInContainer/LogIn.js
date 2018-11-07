@@ -8,7 +8,7 @@ class LogIn extends Component{
         this.state={
             username:'',
             password:'',
-            isLoggedIn:''
+            isLoggedIn: false
         }
     }
     checkForm() {
@@ -17,7 +17,6 @@ class LogIn extends Component{
     }
 
     handleChange = (e) => {
-        console.log(e.target.value)
         this.setState({
           [e.target.id]: e.target.value
         });

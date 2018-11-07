@@ -5,6 +5,7 @@ import EditTrail from '../EditTrail/editTrail';
 import WeatherData from '../WeatherData/weatherData';
 import { Container, Row, Col } from 'reactstrap';
 import { Route, Switch } from 'react-router-dom';
+import Map from '../Map/map';
 
 const My404 = () => {
     return (
@@ -47,6 +48,13 @@ componentDidMount(){
     }).catch((err) => {
         console.log(err);
     })
+    this.getWeather().then((data) => {
+      console.log(data, 'this is data');
+      this.setState({weather: data});
+  
+    }).catch((err) => {
+      console.log(err);
+    });
 }
 
 addTrail = async (trail, e) => {
@@ -146,18 +154,8 @@ getWeather = async () => {
       const weatherJson = await weather.json();
       return weatherJson
     } catch(err){
-      return err
+      return err;
     }
-  }
-  
-  componentDidMount(){
-    this.getWeather().then((data) => {
-      console.log(data, 'this is data');
-      this.setState({weather: data});
-  
-    }).catch((err) => {
-      console.log(err);
-    });
   }
   
 
@@ -165,72 +163,24 @@ render(){
     console.log(this.state)
     return (   
         <Container>
-            <main>
-                <Switch>
-                    <Route exact path="/addTrail" component={ AddTrail }/>
-                    <Route exact path="/editTrail" component={ EditTrail }/>
-                    <Route component={My404} />
-                </Switch>
-            </main>
+            
+            <Switch>
+                <Route exact path="/trail/addTrail" render={()=>{
+                    return(<AddTrail addTrail={this.addTrail}/>
+                    )}}/>
+                 <Route exact path="/trail/editTrail" render={()=>{
+                     return(<EditTrail openAndEdit={this.openAndEdit}/>
+                     )}}/>
+                 <Route component={My404} />
+            </Switch>
+            
                 <Row>
-                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/>INSERT MAP HERE</Col>
+                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
                     <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
                 </Row>
         </Container>
         )
     }
 }
-{/* <EditTrail trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/> */}
-
-
-
 export default TrailContainer;
 
-//closeAndEdit = async (e) => {
-    //     e.preventDefault();
-    
-    //     try {
-    //         const editResponse = await fetch('http://localhost:9000/api/v1/trails/' + this.state.trailToEdit._id, {
-    //             method: 'PUT',
-    //             body: JSON.stringify({
-    //                 name: this.state.trailToEdit.name,
-    //                 location: this.state.trailToEdit.location,
-    //                 description: this.state.trailToEdit.description,
-    //                 rating: this.state.trailToEdit.rating
-    //             }),
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         });
-    //         const editResponseParsed = await editResponse.json();
-    
-    //         const newTrailArrayWithEdit = this.state.trails.map((trail) => {
-    
-    //             if(trail._id === editResponseParsed.data._id){
-    //                 trail = editResponseParsed.data
-    //             }
-    //             return trail
-    //         });
-    
-    //         this.setState({
-    //             showEditModal: false,
-    //             trails: newTrailArrayWithEdit
-    //         });
-    
-    //         console.log(editResponseParsed, 'parsed edit')
-    
-            
-    //     } catch(err){
-    //         console.log(err)
-    //     }
-    // }
-    // openAndEdit = (trailFromTheList) => {
-    //     console.log(trailFromTheList, ' trailToEdit ');
-    
-    //     this.setState({
-    //         showEditModal: true,
-    //         trailToEdit: {
-    //             ...trailFromTheList
-    //         }
-    //     })
-    // }
