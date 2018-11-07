@@ -50,6 +50,14 @@ componentDidMount(){
         console.log(err);
     })
     this.getWeather().then((data) => {
+<<<<<<< HEAD
+      console.log(data, 'this is data');
+      this.setState({weather: data});
+  
+    }).catch((err) => {
+      console.log(err);
+    });
+=======
         console.log(data, 'this is data');
         this.setState({weather: data});
     
@@ -57,6 +65,7 @@ componentDidMount(){
         console.log(err);
       });
     
+>>>>>>> dbb619ba0e58b63a1f4bd64719f2d04d16ce9c46
 }
 
 addTrail = async (trail, e) => {
@@ -157,11 +166,13 @@ getWeather = async () => {
       const weatherJson = await weather.json();
       return weatherJson
     } catch(err){
-      return err
+      return err;
     }
   }
   
 
+<<<<<<< HEAD
+=======
   componentDidMount(){
     this.getWeather().then((data) => {
       console.log(data, 'this is data');
@@ -172,10 +183,26 @@ getWeather = async () => {
     });
   }
   
+>>>>>>> dbb619ba0e58b63a1f4bd64719f2d04d16ce9c46
 render(){
     console.log(this.state)
     return (   
         <Container>
+<<<<<<< HEAD
+            
+            <Switch>
+                <Route exact path="/trail/addTrail" render={()=>{
+                    return(<AddTrail addTrail={this.addTrail}/>
+                    )}}/>
+                 <Route exact path="/trail/editTrail" render={()=>{
+                     return(<EditTrail openAndEdit={this.openAndEdit}/>
+                     )}}/>
+                 <Route component={My404} />
+            </Switch>
+            
+                <Row>
+                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
+=======
 
             <main>
                 <Switch>
@@ -186,63 +213,12 @@ render(){
             </main>
                 <Row>
                     <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/><Map/></Col>
+>>>>>>> dbb619ba0e58b63a1f4bd64719f2d04d16ce9c46
                     <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
                 </Row>
         </Container>
         )
     }
 }
-{/* <EditTrail trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/> */}
-
-
-
 export default TrailContainer;
 
-//closeAndEdit = async (e) => {
-    //     e.preventDefault();
-    
-    //     try {
-    //         const editResponse = await fetch('http://localhost:9000/api/v1/trails/' + this.state.trailToEdit._id, {
-    //             method: 'PUT',
-    //             body: JSON.stringify({
-    //                 name: this.state.trailToEdit.name,
-    //                 location: this.state.trailToEdit.location,
-    //                 description: this.state.trailToEdit.description,
-    //                 rating: this.state.trailToEdit.rating
-    //             }),
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             }
-    //         });
-    //         const editResponseParsed = await editResponse.json();
-    
-    //         const newTrailArrayWithEdit = this.state.trails.map((trail) => {
-    
-    //             if(trail._id === editResponseParsed.data._id){
-    //                 trail = editResponseParsed.data
-    //             }
-    //             return trail
-    //         });
-    
-    //         this.setState({
-    //             showEditModal: false,
-    //             trails: newTrailArrayWithEdit
-    //         });
-    
-    //         console.log(editResponseParsed, 'parsed edit')
-    
-            
-    //     } catch(err){
-    //         console.log(err)
-    //     }
-    // }
-    // openAndEdit = (trailFromTheList) => {
-    //     console.log(trailFromTheList, ' trailToEdit ');
-    
-    //     this.setState({
-    //         showEditModal: true,
-    //         trailToEdit: {
-    //             ...trailFromTheList
-    //         }
-    //     })
-    // }

@@ -15,9 +15,10 @@ class AddTrail extends Component {
         }
     }
     updateTrail = (e) => {
-        this.setState({[e.currentTarget.name]: e.currentTarget.value})
+        this.setState({[e.currentTarget.name]: e.currentTarget.value});
     }
     render(){
+        console.log("GOT HERE 2");
         return (
             <form onSubmit={this.props.addTrail.bind(null, this.state)}>
                 <label>

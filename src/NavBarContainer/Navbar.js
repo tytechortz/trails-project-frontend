@@ -4,6 +4,8 @@ import { Route, Switch } from 'react-router-dom';
 import AddTrail from "../AddTrail/addTrail"
 import EditTrail from '../EditTrail/editTrail';
 import TrailContainer from '../TrailContainer/trailContainer';
+import { Link } from 'react-router-dom';
+
 import {
   Collapse,
   Navbar,
@@ -37,29 +39,26 @@ export default class Example extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">TrailBlazer</NavbarBrand>
+          <NavbarBrand tag={Link} to="/trail">TrailBlazer</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem componentClass={TrailContainer}>
-                <NavLink href="/" to="/">Home</NavLink>
+              <NavItem>
+                <NavLink tag={Link} to="/trail">Home</NavLink>
               </NavItem>
-              <NavItem componentClass={LogIn}>
-                <NavLink href="/login" to="/login">LogIn</NavLink>
-              </NavItem>
-              <NavItem componentClass={AddTrail}>
-                <NavLink href="/addTrail" to="/addTrail">Add Trail</NavLink>
+              <NavItem>
+                <NavLink tag={Link} to="/login">LogIn</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem componentClass={AddTrail}>
-                  <NavLink href="/addTrail" to="/addTrail">Add a Trail</NavLink>
+                  <DropdownItem >
+                  <NavLink tag={Link} to="/trail/addTrail">Add Trail</NavLink>
                   </DropdownItem>
-                  <DropdownItem componentClass={EditTrail}>
-                  <NavLink href="/editTrail" to="/editTrail">Edit a Trail</NavLink>
+                  <DropdownItem>
+                  <NavLink tag={Link} to="/trail/editTrail">Edit Trail</NavLink>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
