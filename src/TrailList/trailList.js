@@ -7,7 +7,8 @@ const Trails = (props) => {
         return (
             <li key={trail._id}>
                 <h5>Name: {trail.name}</h5>
-                <h5>Location: {trail.location}</h5>
+                <h5>Location Latitude: {trail.locationLat}</h5>
+                <h5>Location Longitude: {trail.locationLon}</h5>
                 <h5>Info: {trail.description}</h5>
                 <h5>Rating: {trail.rating}/5</h5>
                 <button onClick ={props.openAndEdit.bind(null, trail)}>Edit Trail</button>
