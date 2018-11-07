@@ -17,8 +17,8 @@ const My404 = () => {
 
 
 
-const lat = '39';
-const lon = '-104';
+const lat = '39.74';
+const lon = '-105';
 
 class TrailContainer extends Component {
     constructor(){
@@ -29,7 +29,8 @@ class TrailContainer extends Component {
             weather: [],
             trailToEdit: {
                 name: '',
-                location: '',
+                locationLat: '',
+                locationLon: '',
                 description: '',
                 rating: '',
                 _id: ''
@@ -48,6 +49,14 @@ componentDidMount(){
     }).catch((err) => {
         console.log(err);
     })
+    this.getWeather().then((data) => {
+        console.log(data, 'this is data');
+        this.setState({weather: data});
+    
+      }).catch((err) => {
+        console.log(err);
+      });
+    
 }
 
 addTrail = async (trail, e) => {
@@ -100,7 +109,8 @@ closeAndEdit = async (e) => {
             method: 'PUT',
             body: JSON.stringify({
                 name: this.state.trailToEdit.name,
-                location: this.state.trailToEdit.location,
+                locationLat: this.state.trailToEdit.locationLat,
+                locationLon: this.state.trailToEdit.locationLon,
                 description: this.state.trailToEdit.description,
                 rating: this.state.trailToEdit.rating
             }),
@@ -151,6 +161,7 @@ getWeather = async () => {
     }
   }
   
+
   componentDidMount(){
     this.getWeather().then((data) => {
       console.log(data, 'this is data');
@@ -161,7 +172,6 @@ getWeather = async () => {
     });
   }
   
-
 render(){
     console.log(this.state)
     return (   
