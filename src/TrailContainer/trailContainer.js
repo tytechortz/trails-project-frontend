@@ -7,7 +7,13 @@ import { Container, Row, Col } from 'reactstrap';
 import { Route, Switch } from 'react-router-dom';
 import Map from '../Map/map';
 
-
+const My404 = () => {
+    return (
+      <div>
+        You're Lost
+      </div>
+      )
+};
 
 
 
@@ -156,16 +162,32 @@ getWeather = async () => {
   }
   
 
-    
-
+  componentDidMount(){
+    this.getWeather().then((data) => {
+      console.log(data, 'this is data');
+      this.setState({weather: data});
+  
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+  
 render(){
     console.log(this.state)
     return (   
         <Container>
-            <Row>
-                <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/><Map/></Col>
-                <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
-            </Row>
+
+            <main>
+                <Switch>
+                    <Route exact path="/addTrail" component={ AddTrail }/>
+                    <Route exact path="/editTrail" component={ EditTrail }/>
+                    <Route component={My404} />
+                </Switch>
+            </main>
+                <Row>
+                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/><Map/></Col>
+                    <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
+                </Row>
         </Container>
         )
     }

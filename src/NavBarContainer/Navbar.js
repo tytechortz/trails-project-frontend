@@ -47,6 +47,9 @@ export default class Example extends React.Component {
               <NavItem componentClass={LogIn}>
                 <NavLink href="/login" to="/login">LogIn</NavLink>
               </NavItem>
+              <NavItem componentClass={AddTrail}>
+                <NavLink href="/addTrail" to="/addTrail">Add Trail</NavLink>
+              </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
@@ -55,7 +58,7 @@ export default class Example extends React.Component {
                   <DropdownItem componentClass={AddTrail}>
                   <NavLink href="/addTrail" to="/addTrail">Add a Trail</NavLink>
                   </DropdownItem>
-                  <DropdownItem>
+                  <DropdownItem componentClass={EditTrail}>
                   <NavLink href="/editTrail" to="/editTrail">Edit a Trail</NavLink>
                   </DropdownItem>
                 </DropdownMenu>
