@@ -28,7 +28,7 @@ class App extends Component {
               <Route exact path="/login" component={LogIn} />
               <Route path="/trail" component={TrailContainer} />
               <Redirect from="/" to="/trail"/>
-              {/* <Route component={My404} /> */}
+              <Route component={My404} />
             </Switch>
           </main>
       </div>

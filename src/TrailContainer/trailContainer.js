@@ -29,8 +29,7 @@ class TrailContainer extends Component {
             weather: [],
             trailToEdit: {
                 name: '',
-                locationLat: '',
-                locationLon: '',
+                location: '',
                 description: '',
                 rating: '',
                 _id: ''
@@ -108,8 +107,7 @@ closeAndEdit = async (e) => {
             method: 'PUT',
             body: JSON.stringify({
                 name: this.state.trailToEdit.name,
-                locationLat: this.state.trailToEdit.locationLat,
-                locationLon: this.state.trailToEdit.locationLon,
+                location: this.state.trailToEdit.location,
                 description: this.state.trailToEdit.description,
                 rating: this.state.trailToEdit.rating
             }),
