@@ -17,8 +17,8 @@ const My404 = () => {
 
 
 
-const lat = '39';
-const lon = '-104';
+const lat = '39.74';
+const lon = '-105';
 
 class TrailContainer extends Component {
     constructor(){
@@ -29,7 +29,8 @@ class TrailContainer extends Component {
             weather: [],
             trailToEdit: {
                 name: '',
-                location: '',
+                locationLat: '',
+                locationLon: '',
                 description: '',
                 rating: '',
                 _id: ''
@@ -49,12 +50,22 @@ componentDidMount(){
         console.log(err);
     })
     this.getWeather().then((data) => {
+<<<<<<< HEAD
       console.log(data, 'this is data');
       this.setState({weather: data});
   
     }).catch((err) => {
       console.log(err);
     });
+=======
+        console.log(data, 'this is data');
+        this.setState({weather: data});
+    
+      }).catch((err) => {
+        console.log(err);
+      });
+    
+>>>>>>> dbb619ba0e58b63a1f4bd64719f2d04d16ce9c46
 }
 
 addTrail = async (trail, e) => {
@@ -107,7 +118,8 @@ closeAndEdit = async (e) => {
             method: 'PUT',
             body: JSON.stringify({
                 name: this.state.trailToEdit.name,
-                location: this.state.trailToEdit.location,
+                locationLat: this.state.trailToEdit.locationLat,
+                locationLon: this.state.trailToEdit.locationLon,
                 description: this.state.trailToEdit.description,
                 rating: this.state.trailToEdit.rating
             }),
@@ -159,10 +171,24 @@ getWeather = async () => {
   }
   
 
+<<<<<<< HEAD
+=======
+  componentDidMount(){
+    this.getWeather().then((data) => {
+      console.log(data, 'this is data');
+      this.setState({weather: data});
+  
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+  
+>>>>>>> dbb619ba0e58b63a1f4bd64719f2d04d16ce9c46
 render(){
     console.log(this.state)
     return (   
         <Container>
+<<<<<<< HEAD
             
             <Switch>
                 <Route exact path="/trail/addTrail" render={()=>{
@@ -176,6 +202,18 @@ render(){
             
                 <Row>
                     <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
+=======
+
+            <main>
+                <Switch>
+                    <Route exact path="/addTrail" component={ AddTrail }/>
+                    <Route exact path="/editTrail" component={ EditTrail }/>
+                    <Route component={My404} />
+                </Switch>
+            </main>
+                <Row>
+                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/><Map/></Col>
+>>>>>>> dbb619ba0e58b63a1f4bd64719f2d04d16ce9c46
                     <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
                 </Row>
         </Container>
