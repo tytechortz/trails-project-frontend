@@ -183,11 +183,11 @@ render(){
                     <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
                 </Row>
         </Container>
+        )
         
-        
-    
-
-
+    }
+}
+export default TrailContainer;
 
 
 
@@ -204,7 +204,3 @@ render(){
           <EditTrail open={this.state.showEditModal} trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
         </Grid.Row>
 </Grid> 
-    )
-}
-}
-export default TrailContainer;
