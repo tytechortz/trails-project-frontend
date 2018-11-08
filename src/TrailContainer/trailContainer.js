@@ -6,6 +6,7 @@ import WeatherData from '../WeatherData/weatherData';
 import { Container, Row, Col } from 'reactstrap';
 import { Route, Switch } from 'react-router-dom';
 import Map from '../Map/map';
+import { Grid } from 'semantic-ui-react';
 
 const My404 = () => {
     return (
@@ -34,7 +35,7 @@ class TrailContainer extends Component {
                 rating: '',
                 _id: ''
             },
-           
+           showEditModal: false
         }
     }
 getTrails = async () => {
@@ -74,8 +75,7 @@ addTrail = async (trail, e) => {
         console.log(parsedResponse, ' this is response')
 
         this.setState({trails: [...this.state.trails, parsedResponse.data]})
-        this.props.history.push("/trails");
-
+        this.props.history.push("/trails")
 
         } catch(err){
             console.log(err)
@@ -101,6 +101,7 @@ handleEditChange = (e) => {
     });
 
 }
+
 closeAndEdit = async (e) => {
     e.preventDefault();
     try {
@@ -129,6 +130,7 @@ closeAndEdit = async (e) => {
         });
 
         this.setState({
+            showEditModal: false,
             trails: newTrailArrayWithEdit
         });
 
@@ -142,6 +144,7 @@ openAndEdit = (trailFromTheList) => {
     console.log(trailFromTheList, ' trail to edit');
 
     this.setState({
+        showEditModal: true,
         trailToEdit: {
             ...trailFromTheList
         }
@@ -163,25 +166,19 @@ getWeather = async () => {
 render(){
     console.log(this.state)
     return (   
-        <Container>
-            
-            <Switch>
-                <Route exact path="/trail/addTrail" render={()=>{
-                    return(<AddTrail addTrail={this.addTrail}/>
-                    )}}/>
-                 <Route exact path="/trail/editTrail" render={()=>{
-                     return(<EditTrail openAndEdit={this.openAndEdit}/>
-                     )}}/>
-                 {/* <Route component={My404} /> */}
-            </Switch>
-            
-                <Row>
-                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
-                    <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
-                </Row>
+        <Container>   
+        <Switch>
+             <Route exact path="/trail/addTrail" render={()=>{
+                return(<AddTrail addTrail={this.addTrail}/>
+                )}}/>
+        </Switch>
+            <Row>
+                <EditTrail open={this.state.showEditModal} trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
+                <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
+                <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
+            </Row>
         </Container>
         )
     }
 }
 export default TrailContainer;
-
