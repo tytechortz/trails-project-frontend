@@ -6,6 +6,7 @@ import WeatherData from '../WeatherData/weatherData';
 import { Container, Row, Col } from 'reactstrap';
 import { Route, Switch } from 'react-router-dom';
 import Map from '../Map/map';
+import { Grid } from 'semantic-ui-react';
 
 const My404 = () => {
     return (
@@ -34,7 +35,7 @@ class TrailContainer extends Component {
                 rating: '',
                 _id: ''
             },
-           
+           showEditModal: false
         }
     }
 getTrails = async () => {
@@ -100,6 +101,7 @@ handleEditChange = (e) => {
     });
 
 }
+
 closeAndEdit = async (e) => {
     e.preventDefault();
     try {
@@ -128,6 +130,7 @@ closeAndEdit = async (e) => {
         });
 
         this.setState({
+            showEditModal: false,
             trails: newTrailArrayWithEdit
         });
 
@@ -141,6 +144,7 @@ openAndEdit = (trailFromTheList) => {
     console.log(trailFromTheList, ' trail to edit');
 
     this.setState({
+        showEditModal: true,
         trailToEdit: {
             ...trailFromTheList
         }
@@ -171,7 +175,7 @@ render(){
                  <Route exact path="/trail/editTrail" render={()=>{
                      return(<EditTrail openAndEdit={this.openAndEdit}/>
                      )}}/>
-                 <Route component={My404} />
+                 {/* <Route component={My404} /> */}
             </Switch>
             
                 <Row>
@@ -179,8 +183,28 @@ render(){
                     <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
                 </Row>
         </Container>
-        )
-    }
+        
+        
+    
+
+
+
+
+
+
+<Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
+        <Grid.Row>
+          <Grid.Column>
+            <AddTrail addTrail={this.addTrail}/>
+          </Grid.Column>
+
+          <Grid.Column>
+            <TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} openAndEdit={this.openAndEdit}/>
+          </Grid.Column>
+          <EditTrail open={this.state.showEditModal} trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
+        </Grid.Row>
+</Grid> 
+    )
+}
 }
 export default TrailContainer;
-
