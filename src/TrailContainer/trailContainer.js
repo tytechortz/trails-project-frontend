@@ -166,33 +166,8 @@ getWeather = async () => {
 render(){
     console.log(this.state)
     return (   
-        <Container>
-            
-            <Switch>
-                <Route exact path="/trail/addTrail" render={()=>{
-                    return(<AddTrail addTrail={this.addTrail}/>
-                    )}}/>
-                 <Route exact path="/trail/editTrail" render={()=>{
-                     return(<EditTrail openAndEdit={this.openAndEdit}/>
-                     )}}/>
-                 {/* <Route component={My404} /> */}
-            </Switch>
-            
-                <Row>
-                    <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
-                    <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
-                </Row>
-        </Container>
-        )
-        
-    }
-}
-export default TrailContainer;
 
-
-
-
-<Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
+         <Grid columns={2} divided textAlign='center' style={{ height: '100%' }} verticalAlign='top' stackable>
         <Grid.Row>
           <Grid.Column>
             <AddTrail addTrail={this.addTrail}/>
@@ -203,4 +178,30 @@ export default TrailContainer;
           </Grid.Column>
           <EditTrail open={this.state.showEditModal} trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
         </Grid.Row>
-</Grid> 
+</Grid>  
+       
+        )
+        
+    }
+}
+export default TrailContainer;
+
+// <Container>
+            
+// <Switch>
+//     <Route exact path="/trail/addTrail" render={()=>{
+//         return(<AddTrail addTrail={this.addTrail}/>
+//         )}}/>
+//      <Route exact path="/trail/editTrail" render={()=>{
+//          return(<EditTrail openAndEdit={this.openAndEdit}/>
+//          )}}/>
+//      {/* <Route component={My404} /> */}
+// </Switch>
+
+//     <Row>
+//         <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
+//         <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
+//     </Row>
+// </Container>
+
+
