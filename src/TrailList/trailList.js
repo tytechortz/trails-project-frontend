@@ -32,8 +32,7 @@ const Trails = (props) => {
                 </Table>
                 <Button color="primary" size="sm" onClick ={props.openAndEdit.bind(null, trail)}>Edit</Button>
                 <Button color="secondary" size="sm" onClick={props.deleteTrail.bind(null, trail._id)}>Delete</Button>
-            </div> 
-            
+            </div>
         )
     })
     return (

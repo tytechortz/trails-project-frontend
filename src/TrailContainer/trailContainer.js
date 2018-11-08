@@ -77,7 +77,6 @@ addTrail = async (trail, e) => {
         this.setState({trails: [...this.state.trails, parsedResponse.data]})
         this.props.history.push("/trails")
 
-
         } catch(err){
             console.log(err)
         }
@@ -172,10 +171,6 @@ render(){
              <Route exact path="/trail/addTrail" render={()=>{
                 return(<AddTrail addTrail={this.addTrail}/>
                 )}}/>
-             {/* <Route exact path="/trail/editTrail" render={()=>{
-                 return(<EditTrail openAndEdit={this.openAndEdit}/>
-                 )}}/> */}
-             {/* <Route component={My404} /> */}
         </Switch>
             <Row>
                 <EditTrail open={this.state.showEditModal} trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
