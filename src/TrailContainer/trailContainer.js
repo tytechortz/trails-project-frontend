@@ -74,6 +74,7 @@ addTrail = async (trail, e) => {
         console.log(parsedResponse, ' this is response')
 
         this.setState({trails: [...this.state.trails, parsedResponse.data]})
+        this.props.history.push("/trails");
 
 
         } catch(err){
@@ -171,7 +172,7 @@ render(){
                  <Route exact path="/trail/editTrail" render={()=>{
                      return(<EditTrail openAndEdit={this.openAndEdit}/>
                      )}}/>
-                 <Route component={My404} />
+                 {/* <Route component={My404} /> */}
             </Switch>
             
                 <Row>
