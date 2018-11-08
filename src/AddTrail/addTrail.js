@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import { Button } from 'reactstrap';
+
 
 
 class AddTrail extends Component {
@@ -10,7 +12,8 @@ class AddTrail extends Component {
             name: '',
             location: '',
             description: '',
-            rating: ''
+            rating: '',
+            isHidden:false,
         }
     }
     updateTrail = (e) => {
@@ -36,7 +39,8 @@ class AddTrail extends Component {
                     Rating:
                     <input type='number' name='rating' value={this.state.rating} onChange={this.updateTrail}/>  
                 </label>
-                <button type='Submit'>Add Trail</button>
+                <Button color="secondary" size="sm" type='Submit'>Add the Trail</Button>
+
             </form>
             )
     }

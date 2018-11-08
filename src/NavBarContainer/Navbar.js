@@ -49,7 +49,17 @@ export default class Example extends React.Component {
               <NavItem>
                 <NavLink tag={Link} to="/login">LogIn</NavLink>
               </NavItem>
-              <UncontrolledDropdown nav inNavbar>
+              <NavItem>
+                <NavLink tag={Link} to="/trail/addTrail">Add Trail</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+  }
+}
+{/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Options
                 </DropdownToggle>
@@ -61,11 +71,4 @@ export default class Example extends React.Component {
                   <NavLink tag={Link} to="/trail/editTrail">Edit Trail</NavLink>
                   </DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
-            </Nav>
-          </Collapse>
-        </Navbar>
-      </div>
-    );
-  }
-}
+              </UncontrolledDropdown> */}

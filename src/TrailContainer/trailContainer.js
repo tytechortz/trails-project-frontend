@@ -74,6 +74,7 @@ addTrail = async (trail, e) => {
         console.log(parsedResponse, ' this is response')
 
         this.setState({trails: [...this.state.trails, parsedResponse.data]})
+        this.props.history.push("/trails");
 
 
         } catch(err){
