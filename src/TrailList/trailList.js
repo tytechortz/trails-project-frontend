@@ -36,7 +36,7 @@ const Trails = (props) => {
         )
     })
     return (
-        <div>
+        <div className="scroll">
             <h3>Trails</h3>
                 {trails}
         </div>
