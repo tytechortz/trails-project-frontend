@@ -3,6 +3,7 @@ import { Card, Button} from 'semantic-ui-react';
 import { Container, Row, Col } from 'reactstrap';
 //import { Button } from 'reactstrap';
 import { Table } from 'reactstrap';
+import './trailList.css';
 
 
 
