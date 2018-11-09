@@ -7,6 +7,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { Route, Switch } from 'react-router-dom';
 import Map from '../Map/map';
 import { Grid } from 'semantic-ui-react';
+import './trailContainer.css';
 
 const My404 = () => {
     return (
@@ -172,10 +173,13 @@ render(){
                 return(<AddTrail addTrail={this.addTrail}/>
                 )}}/>
         </Switch>
+            <Row id='title'>
+                <Col xs="12">TrailBlazer</Col>
+            </Row>
             <Row>
                 <EditTrail open={this.state.showEditModal} trailToEdit={this.state.trailToEdit} handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit}/>
-                <Col xs="9"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
-                <Col xs="3"><WeatherData weather={this.state.weather}/></Col>  
+                <Col xs="10"><TrailList trails={this.state.trails} deleteTrail={this.deleteTrail} addTrail={this.addTrail} openAndEdit={this.openAndEdit} /><Map/></Col>
+                <Col xs="2"><WeatherData weather={this.state.weather}/></Col>  
             </Row>
         </Container>
         )

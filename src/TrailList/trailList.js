@@ -3,6 +3,7 @@ import { Card, Button} from 'semantic-ui-react';
 import { Container, Row, Col } from 'reactstrap';
 //import { Button } from 'reactstrap';
 import { Table } from 'reactstrap';
+import './trailList.css';
 
 
 
@@ -12,7 +13,7 @@ const Trails = (props) => {
     const trails = props.trails.map((trail, i) => {
         return (
             <div key={trail._id}>
-            <Table size="sm">
+            <Table striped hover size="sm">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -30,13 +31,13 @@ const Trails = (props) => {
                     </tr>
                 </tbody>
                 </Table>
-                <Button color="primary" size="sm" onClick ={props.openAndEdit.bind(null, trail)}>Edit</Button>
-                <Button color="secondary" size="sm" onClick={props.deleteTrail.bind(null, trail._id)}>Delete</Button>
+                <Button outline color="primary" size="sm" onClick ={props.openAndEdit.bind(null, trail)}>Edit</Button>
+                <Button outline color="secondary" size="sm" onClick={props.deleteTrail.bind(null, trail._id)}>Delete</Button>
             </div>
         )
     })
     return (
-        <div>
+        <div className="scroll">
             <h3>Trails</h3>
                 {trails}
         </div>

@@ -5,6 +5,7 @@ import AddTrail from "../AddTrail/addTrail"
 import EditTrail from '../EditTrail/editTrail';
 import TrailContainer from '../TrailContainer/trailContainer';
 import { Link } from 'react-router-dom';
+import './navBar.css';
 
 import {
   Collapse,
