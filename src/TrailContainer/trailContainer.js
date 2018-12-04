@@ -40,7 +40,7 @@ class TrailContainer extends Component {
         }
     }
 getTrails = async () => {
-    const trails = await fetch('http://localhost:9000/api/v1/trails');
+    const trails = await fetch('https://trails-backend.herokuapp.com/api/v1/trails');
     const trailsParsedJSON = await trails.json();
     return trailsParsedJSON
 }
@@ -64,7 +64,7 @@ addTrail = async (trail, e) => {
     console.log(trail);
 
     try {
-        const addedTrail = await fetch('http://localhost:9000/api/v1/trails', {
+        const addedTrail = await fetch('https://trails-backend.herokuapp.com/api/v1/trails', {
             method: 'POST',
             body: JSON.stringify(trail),
             headers: {
@@ -84,7 +84,7 @@ addTrail = async (trail, e) => {
 }
 deleteTrail = async (id) => {
     console.log(id, ' deleteTrail');
-    const deleteTrailResponse = await fetch('http://localhost:9000/api/v1/trails/' + id, {
+    const deleteTrailResponse = await fetch('https://trails-backend.herokuapp.com/api/v1/trails/' + id, {
         method: 'DELETE'
     });
 
@@ -106,7 +106,7 @@ handleEditChange = (e) => {
 closeAndEdit = async (e) => {
     e.preventDefault();
     try {
-        const editResponse = await fetch('http://localhost:9000/api/v1/trails/' + this.state.trailToEdit._id, {
+        const editResponse = await fetch('https://trails-backend.herokuapp.com/api/v1/trails/' + this.state.trailToEdit._id, {
             method: 'PUT',
             body: JSON.stringify({
                 name: this.state.trailToEdit.name,
